@@ -27,18 +27,14 @@ const getDepartmentById = async (req, res) => {
 const createDepartment = async (req, res) => {
     const { dept_code, dept_name, user_id } = req.body;
 
-    // Check if the user exists
-    const [userRows] = await pool.query('SELECT id FROM users WHERE id = ?', [user_id]);
-    if (userRows.length === 0) {
-        return res.status(400).json({ error: 'Invalid user_id, user does not exist' });
-    }
+    const createDepartment = async (req, res) => {
+        const { id } = req.params;
+        const { dept_code, dept_name, user_id } = req.body;
+    }    
 
     try {
-        const [result] = await pool.query(
-            'INSERT INTO departments (dept_code, dept_name, user_id) VALUES (?, ?, ?)', 
-            [dept_code, dept_name, user_id]
-        );
-        res.status(201).json({ message: 'Department created successfully', deptId: result.insertId });
+        const [result] = await pool.query('INSERT INTO departments (dept_code, dept_name, user_id) VALUES (?, ?, ?)', [dept_code, dept_name, user_id]);
+        res.status(201).json({ dept_id: result.insertId, dept_code, dept_name, user_id });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
