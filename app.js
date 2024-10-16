@@ -16,7 +16,7 @@ app.use(cors());
 
 // Endpoint Here
 app.get('/', function(req, res) {
-  res.send("John Robert Olabiaga, MIT");
+  res.send("John Robert Olabiaga");
 });
 
 // Endpoint Here
