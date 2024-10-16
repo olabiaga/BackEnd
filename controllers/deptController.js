@@ -23,14 +23,9 @@ const getDepartmentById = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
-
 const createDepartment = async (req, res) => {
+    const { dept_id } = req.params;
     const { dept_code, dept_name, user_id } = req.body;
-
-    const createDepartment = async (req, res) => {
-        const { id } = req.params;
-        const { dept_code, dept_name, user_id } = req.body;
-    }    
 
     try {
         const [result] = await pool.query('INSERT INTO departments (dept_code, dept_name, user_id) VALUES (?, ?, ?)', [dept_code, dept_name, user_id]);
@@ -39,7 +34,6 @@ const createDepartment = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
-
 
 const updateDepartment = async (req, res) => {
     const { id } = req.params;
